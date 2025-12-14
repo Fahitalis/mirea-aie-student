@@ -10,4 +10,4 @@ wheels/
 .venv
 
 #reports
-reports_example/
+reports*/
