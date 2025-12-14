@@ -187,7 +187,7 @@ def compute_quality_flags(summary: DatasetSummary, missing_df: pd.DataFrame) -> 
     
     flags["has_constant_columns"] = False
     for c in summary.columns:
-        if c.unique == 0:
+        if c.unique == 1:
             flags["has_constant_columns"] = True
             break
 
