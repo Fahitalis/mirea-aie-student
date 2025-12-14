@@ -22,6 +22,19 @@ def _sample_df() -> pd.DataFrame:
     )
 
 
+def test_flag_has_constant_columns():
+    df = pd.DataFrame(
+        {
+            "age": [20, 20, 20],
+            "height": [170, 180, 190],
+        }
+    )
+    summary = summarize_dataset(df)
+    missing = missing_table(df)
+    
+    assert compute_quality_flags(summary, missing)["has_constant_columns"] == True
+    
+
 def test_summarize_dataset_basic():
     df = _sample_df()
     summary = summarize_dataset(df)
