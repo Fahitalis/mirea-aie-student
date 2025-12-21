@@ -266,9 +266,7 @@ async def quality_flags_from_csv(file: UploadFile = File(...)) -> QualityFlagsRe
     """
     Эндпоинт, который принимает CSV-файл, запускает EDA-ядро
     (summarize_dataset + missing_table + compute_quality_flags)
-    и возвращает оценку качества данных.
-
-    Именно это по сути связывает S03 (CLI EDA) и S04 (HTTP-сервис).
+    и возвращает флаги качества данных.
     """
 
     if file.content_type not in ("text/csv", "application/vnd.ms-excel", "application/octet-stream"):
