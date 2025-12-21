@@ -78,6 +78,15 @@ class QualityResponse(BaseModel):
     )
 
 
+class QualityFlagsResponse(BaseModel):
+    """Ответ заглушки модели флагов качества датасета."""
+
+    flags: dict[str, bool] | None = Field(
+        default=None,
+        description="Булевы флаги с подробностями (например, too_few_rows, too_many_missing)",
+    )
+
+
 # ---------- Системный эндпоинт ----------
 
 
@@ -241,4 +250,53 @@ async def quality_from_csv(file: UploadFile = File(...)) -> QualityResponse:
         latency_ms=latency_ms,
         flags=flags_bool,
         dataset_shape={"n_rows": n_rows, "n_cols": n_cols},
+    )
+
+
+# ---------- /quality-flags-from-csv: реальный CSV через нашу EDA-логику ----------
+
+
+@app.post(
+    "/quality-flags-from-csv",
+    response_model=QualityFlagsResponse,
+    tags=["quality"],
+    summary="Флаги качества по CSV-файлу с использованием EDA-ядра",
+)
+async def quality_flags_from_csv(file: UploadFile = File(...)) -> QualityFlagsResponse:
+    """
+    Эндпоинт, который принимает CSV-файл, запускает EDA-ядро
+    (summarize_dataset + missing_table + compute_quality_flags)
+    и возвращает оценку качества данных.
+
+    Именно это по сути связывает S03 (CLI EDA) и S04 (HTTP-сервис).
+    """
+
+    if file.content_type not in ("text/csv", "application/vnd.ms-excel", "application/octet-stream"):
+        # content_type от браузера может быть разным, поэтому проверка мягкая
+        # но для демонстрации оставим простую ветку 400
+        raise HTTPException(status_code=400, detail="Ожидается CSV-файл (content-type text/csv).")
+
+    try:
+        # FastAPI даёт file.file как file-like объект, который можно читать pandas'ом
+        df = pd.read_csv(file.file)
+    except Exception as exc:  # noqa: BLE001
+        raise HTTPException(status_code=400, detail=f"Не удалось прочитать CSV: {exc}")
+
+    if df.empty:
+        raise HTTPException(status_code=400, detail="CSV-файл не содержит данных (пустой DataFrame).")
+
+    # Используем EDA-ядро из S03
+    summary = summarize_dataset(df)
+    missing_df = missing_table(df)
+    flags_all = compute_quality_flags(summary, missing_df)
+
+    # Оставляем только булевы флаги для компактности
+    flags_bool: dict[str, bool] = {
+        key: bool(value)
+        for key, value in flags_all.items()
+        if isinstance(value, bool)
+    }
+
+    return QualityFlagsResponse(
+        flags=flags_bool,
     )
