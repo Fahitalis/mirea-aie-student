@@ -1,0 +1,26 @@
+{
+  "dataset": "EMNIST-balanced",
+  "seed": 42,
+  "device": "cpu",
+  "model": {
+    "hidden_sizes": [
+      512,
+      256,
+      128
+    ],
+    "dropout": 0.0,
+    "batchnorm": true
+  },
+  "optimizer": {
+    "name": "Adam",
+    "lr": 0.001,
+    "weight_decay": 0.0
+  },
+  "early_stopping_patience": 4,
+  "epochs_trained": 13,
+  "best_epoch": 9,
+  "best_val_accuracy": 0.8078333333333333,
+  "best_val_loss": 0.6371665371259053,
+  "test_accuracy": 0.8046,
+  "test_loss": 0.6402625736236572
+}
