@@ -1,1 +1,7 @@
-calculated results
+experiment_id,task,dataset,seed,model_summary,optimizer,lr,epochs_trained,best_val_accuracy,test_accuracy,mean_iou,notes
+C1,classification,STL10,42,SimpleCNN Base,Adam,0.001,4.0,0.502,,,
+C2,classification,STL10,42,SimpleCNN Aug,Adam,0.001,4.0,0.523,,,
+C3,classification,STL10,42,ResNet18 Head,Adam,0.002,2.0,0.939,,,
+C4,classification,STL10,42,ResNet18 Fine-tune,Adam,0.0005,2.0,0.94,0.936875,,
+V1,segmentation,OxfordIIITPet,42,,,,,,,0.750314226666234,Base confidence 0.5 threshold
+V2,segmentation,OxfordIIITPet,42,,,,,,,0.7798186118891113,Strict confidence 0.8 threshold

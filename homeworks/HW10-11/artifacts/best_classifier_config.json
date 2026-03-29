@@ -1,0 +1,1 @@
+{"best_model": "C4 (ResNet finetune)", "seed": 42, "batch_size": 64, "val_acc": 0.94, "test_acc": 0.936875}
