@@ -1,0 +1,4 @@
+query,before_retrieved_sources,after_retrieved_sources,hit_before,hit_after,changed
+Что такое квантизация векторов?,"Doc9_Chunk3, Doc7_Chunk3, Doc9_Chunk2","Doc9_Chunk3, Doc7_Chunk3, Doc13_Chunk3",False,True,True
+Как вы обращаетесь с запросами вне вашего домена?,"Doc4_Chunk3, Doc7_Chunk3, Doc5_Chunk0","Doc4_Chunk3, Doc14_Chunk3, Doc7_Chunk3",False,True,True
+Расскажи о проблемах масштабирования retrieval,"Doc9_Chunk3, Doc3_Chunk3, Doc12_Chunk0","Doc9_Chunk3, Doc3_Chunk3, Doc15_Chunk0",False,True,True

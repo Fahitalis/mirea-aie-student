@@ -1,0 +1,11 @@
+query,expected_source,retrieved_sources,hit_at_k,recall_at_k,mrr_at_k,rank_of_first_relevant
+Для чего используются word embeddings?,Doc1,"Doc2_Chunk2, Doc2_Chunk0, Doc11_Chunk0, Doc11_Chunk1, Doc1_Chunk0",True,1.0,0.2,5.0
+Как выполнить семантический поиск с векторами?,"Doc3, Doc4, Doc5","Doc4_Chunk3, Doc9_Chunk3, Doc7_Chunk3, Doc4_Chunk1, Doc7_Chunk1",True,0.3333333333333333,1.0,1.0
+Расскажи о FAISS,Doc3,"Doc4_Chunk3, Doc9_Chunk3, Doc3_Chunk3, Doc3_Chunk0, Doc7_Chunk3",True,1.0,0.3333333333333333,3.0
+"Как я могу оценить, хорошо ли работает моя система retrieval?",Doc8,"Doc9_Chunk3, Doc4_Chunk3, Doc12_Chunk0, Doc4_Chunk2, Doc3_Chunk3",False,0.0,0.0,
+Что такое RAG и как он объединяет retrieval с генерацией?,Doc7,"Doc9_Chunk3, Doc7_Chunk0, Doc6_Chunk3, Doc7_Chunk2, Doc4_Chunk2",True,1.0,0.5,2.0
+Объясни разницу между плотными и разреженными эмбеддингами,Doc6,"Doc6_Chunk3, Doc4_Chunk3, Doc10_Chunk2, Doc5_Chunk1, Doc7_Chunk3",True,1.0,1.0,1.0
+Почему нам нужно разбивать документы на чанки?,Doc9,"Doc4_Chunk3, Doc9_Chunk3, Doc9_Chunk0, Doc7_Chunk3, Doc9_Chunk2",True,1.0,0.5,2.0
+В чем разница между точным и приблизительным поиском ближайшего соседа?,Doc10,"Doc4_Chunk3, Doc6_Chunk3, Doc10_Chunk2, Doc5_Chunk1, Doc10_Chunk3",True,1.0,0.3333333333333333,3.0
+Как модель Sentence-BERT производит хорошие sentence embeddings?,Doc11,"Doc11_Chunk0, Doc2_Chunk2, Doc11_Chunk1, Doc2_Chunk0, Doc2_Chunk1",True,1.0,1.0,1.0
+Какие факторы влияют на качество эмбеддингов?,Doc12,"Doc7_Chunk3, Doc4_Chunk3, Doc7_Chunk2, Doc9_Chunk2, Doc12_Chunk0",True,1.0,0.2,5.0
